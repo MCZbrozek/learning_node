@@ -1,0 +1,8 @@
+*/node_modules
+.idea
+*/Ds_Strore
+
+preject.env
+*/.env
+
+*npm-debug.log*
