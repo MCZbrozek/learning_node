@@ -17,7 +17,7 @@
 </div>
 </div>
 <div>
-    <div id="messages" class="bg-light border border-rounded"></div>
+    <div id="messages" ></div>
 </div>
 
 </div>
@@ -39,7 +39,7 @@ $(() => {
     socket.on('message', addMessage)
 
     function addMessage(message) {
-        $('#messages').append(`<div class="border border-2 border-info rounded-pill bg-secondary"><h4> ${message.name} </h4> <p> ${message.message} </p>`)
+        $('#messages').append(`<div><h4> ${message.name} </h4> <p> ${message.message} </p>`)
     }
 
     function getMessages() {

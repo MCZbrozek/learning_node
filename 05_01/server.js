@@ -28,6 +28,10 @@ app.get('/messages', (req, res) => {
 })
 
 app.post('/messages', async (req, res) => {
+
+    
+    try {
+    
     var message = new Message(req.body)
 
     var savedMessage = await message.save()
@@ -43,11 +47,16 @@ app.post('/messages', async (req, res) => {
             io.emit('message', req.body)
 
         res.sendStatus(200)
-    })
-    // .catch((err) =>{
-    //     res.sendStatus(500)
-    //     return console.error(err)
-    // })
+        
+    } catch (error) {
+        res.sendStatus(500)
+        return console.error(error)
+        } finally {
+            console.log('message post called')
+        }
+    
+})
+ 
 
 
 
@@ -64,19 +73,3 @@ var server = http.listen(3000, () => {
 })
 
 
-
-// psuedo code challenge - Convert to async/await
-
-// MyFunction() {
-//     GetMessages((list) => {
-//         console.log(list)
-//     })
-// }
-
-// add async to the front of the function, create a variable called list that gives us the result of GetMessage
-// and console the resulting 'list' variable into the console. 
-
-// async MyFunction () {
-//     let list = await GetMessage()
-//     console.log(list)
-// }
